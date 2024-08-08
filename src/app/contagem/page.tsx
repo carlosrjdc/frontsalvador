@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import moment from "moment-timezone";
 import axios from "axios";
 import { exportarParaExcel } from "../../funcoes/index";
+import Axios from "@/instance";
 
 interface iContagem {
   id: number;
@@ -28,8 +29,8 @@ function App() {
 
   const buscarDados = async () => {
     try {
-      return await axios
-        .get(`https://contagemrecife.vercel.app/buscarregistros?data=${moment(selectedDate).format("DD/MM/YYYY")}`)
+      return await Axios
+        .get(`/buscarregistros/?data=${moment(selectedDate).format("DD/MM/YYYY")}`)
         .then((response) => setDados(response.data));
     } catch (erro) {
       console.log(erro);
